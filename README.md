@@ -34,3 +34,14 @@ Before getting started, ensure that you have Python installed on your system. It
    git clone https://github.com/mulombiannuar/Fullstack-Flask-App.git
    cd flask-blog-app
    ```
+
+## 📱 Follow Me
+
+Stay connected and follow me on my social media networks:
+
+- **Website**: [mulan.co.ke](https://mulan.co.ke/)
+- **Facebook**: [Mulan Technologies](https://www.facebook.com/mulantech)
+- **Twitter**: [@mulantech](https://twitter.com/mulantech)
+- **YouTube**: [Mulan Technologies Channel](https://www.youtube.com/channel/UCp0mCqz5l4HsUk3OEwm4S4Q)
+- **LinkedIn**: [Anuary Mulombi](https://www.linkedin.com/in/mulombiannuar/)
+- **GitHub**: [mulombiannuar](https://github.com/mulombiannuar)
