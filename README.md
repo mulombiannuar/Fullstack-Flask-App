@@ -35,7 +35,7 @@ Before getting started, ensure that you have Python installed on your system. It
    cd flask-blog-app
    ```
 
-## 📱 Follow Me
+## Follow Me
 
 Stay connected and follow me on my social media networks:
 
