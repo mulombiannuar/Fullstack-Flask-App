@@ -1,4 +1,4 @@
-# Flask Blog App
+# Fullstck Flask App
 
 This is a Flask-based web application that handles basic user authentication, reset their password and allows users to perform CRUD operations (Create, Read, Update, Delete) on blog posts. It is designed to be simple and easy to extend with additional features.
 
