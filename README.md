@@ -18,7 +18,7 @@ This is a Flask-based web application that handles basic user authentication, re
 - **Flask** - Web framework
 - **SQLAlchemy** - ORM for database management
 - **Flask-Login** - User session management
-- **MySQL** - For DBMS
+- **PostgresSQL** - For DBMS
 - **Jinja2** - Templating engine
 - **Bootstrap** - For styling
 
