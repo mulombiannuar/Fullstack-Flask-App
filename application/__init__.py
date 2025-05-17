@@ -7,39 +7,41 @@ from dotenv import load_dotenv
 from flask_mail import Mail
 import os
 
-# Initialize the database object
+# initialize the database object
 db = SQLAlchemy()
 
-# Initialize the Migrate object
+# initialize the migrate object
 migrate = Migrate()
 
-# Initialize Flask-Mail for email functionality
+# initialize Flask-Mail for email functionality
 mail = Mail()
 
 
-# Load environment variables from .env file
+# load environment variables from .env file
 load_dotenv()
 
 def create_app():
     
-    # Initialize the Flask application
+    # initialize the flask application
     app = Flask(__name__)
 
-    # Decide config based on environment
+    # decide config based on environment
     env = os.getenv('FLASK_ENV', 'development')
     if env == 'production':
         app.config.from_object(ProductionConfig)
     else:
         app.config.from_object(DevelopmentConfig)
     
-    # Initialize the database with app
+    # initialize the database with app
     db.init_app(app)
+    
+    # initialize migrate with app and db
     migrate.init_app(app, db)
     
-    # Initialize the mail with app
+    # initialize the mail with app
     mail.init_app(app) 
     
-    # Import and register Blueprints for modular structure
+    # import and register blueprints for modular structure
     from application.views.home import home
     from application.views.auth import auth
     from application.views.user import user
@@ -52,18 +54,18 @@ def create_app():
     
     from application.models.user import User
 
-    # Create database tables if they don't exist
+    # create database tables if they don't exist
     with app.app_context():
         db.create_all()
 
-    # Setup LoginManager for user session management
+    # setup LoginManager for user session management
     login_manager = LoginManager()
-    login_manager.login_view = 'auth.login_page'  # Redirect to login page if not authenticated
+    login_manager.login_view = 'auth.login_page'  # redirect to login page if not authenticated
     login_manager.init_app(app)
 
     @login_manager.user_loader
     def load_user(id):
-        # Define how to load a user from the database
+        # define how to load a user from the database
         return User.query.get(int(id))
 
     return app

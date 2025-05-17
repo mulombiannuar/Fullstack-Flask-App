@@ -15,3 +15,8 @@ def home_page():
 @login_required
 def dashboard_page():
     return render_template('home/dashboard.html')
+
+@home.route('/messages', methods=['GET'])
+@login_required
+def messages_page():
+    return render_template('home/messages.html')

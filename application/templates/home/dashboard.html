@@ -4,8 +4,7 @@ block content %}
   <div class="container">
     <div class="row">
       <div class="col-md-12 page-header">
-        <div class="page-pretitle">Overview</div>
-        <h2 class="page-title">Dashboard</h2>
+        <h2 class="page-title">User Dashboard</h2>
       </div>
     </div>
     <div class="row">
@@ -15,21 +14,23 @@ block content %}
             <div class="row">
               <div class="col-sm-4">
                 <div class="icon-big text-center">
-                  <i class="teal fas fa-shopping-cart"></i>
+                  <i class="teal fas fa-user"></i>
                 </div>
               </div>
               <div class="col-sm-8">
                 <div class="detail">
-                  <p class="detail-subtitle">New Orders</p>
-                  <span class="number">6,267</span>
+                  <p class="detail-subtitle">Update Profile</p>
+                  <span class="number">1</span>
                 </div>
               </div>
             </div>
             <div class="footer">
               <hr />
-              <div class="stats">
-                <i class="fas fa-calendar"></i> For this Week
-              </div>
+              <a href="#">
+                <div class="stats">
+                  <i class="fas fa-arrow-alt-circle-right"></i> Click to update
+                </div>
+              </a>
             </div>
           </div>
         </div>
@@ -40,21 +41,23 @@ block content %}
             <div class="row">
               <div class="col-sm-4">
                 <div class="icon-big text-center">
-                  <i class="olive fas fa-money-bill-alt"></i>
+                  <i class="olive fas fa-users"></i>
                 </div>
               </div>
               <div class="col-sm-8">
                 <div class="detail">
-                  <p class="detail-subtitle">Revenue</p>
-                  <span class="number">$180,900</span>
+                  <p class="detail-subtitle">Manage Users</p>
+                  <span class="number">20</span>
                 </div>
               </div>
             </div>
             <div class="footer">
               <hr />
-              <div class="stats">
-                <i class="fas fa-calendar"></i> For this Month
-              </div>
+              <a href="{{ url_for('user.list_users') }}">
+                <div class="stats">
+                  <i class="fas fa-arrow-alt-circle-right"></i> Click to view
+                </div>
+              </a>
             </div>
           </div>
         </div>
@@ -65,21 +68,23 @@ block content %}
             <div class="row">
               <div class="col-sm-4">
                 <div class="icon-big text-center">
-                  <i class="violet fas fa-eye"></i>
+                  <i class="violet fas fa-list-alt"></i>
                 </div>
               </div>
               <div class="col-sm-8">
                 <div class="detail">
-                  <p class="detail-subtitle">Page views</p>
-                  <span class="number">28,210</span>
+                  <p class="detail-subtitle">Manage Posts</p>
+                  <span class="number">28</span>
                 </div>
               </div>
             </div>
             <div class="footer">
               <hr />
-              <div class="stats">
-                <i class="fas fa-stopwatch"></i> For this Month
-              </div>
+              <a href="{{ url_for('post.list_posts') }}">
+                <div class="stats">
+                  <i class="fas fa-arrow-alt-circle-right"></i> Click to view
+                </div>
+              </a>
             </div>
           </div>
         </div>
@@ -95,16 +100,18 @@ block content %}
               </div>
               <div class="col-sm-8">
                 <div class="detail">
-                  <p class="detail-subtitle">Support Request</p>
+                  <p class="detail-subtitle">Messages</p>
                   <span class="number">75</span>
                 </div>
               </div>
             </div>
             <div class="footer">
               <hr />
-              <div class="stats">
-                <i class="fas fa-envelope-open-text"></i> For this week
-              </div>
+              <a href="{{ url_for('home.messages_page') }}">
+                <div class="stats">
+                  <i class="fas fa-arrow-alt-circle-right"></i> Click to view
+                </div>
+              </a>
             </div>
           </div>
         </div>

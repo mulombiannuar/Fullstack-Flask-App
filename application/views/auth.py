@@ -12,7 +12,7 @@ auth = Blueprint('auth', __name__)
 
 @auth.route('/login', methods=['GET'])
 def login_page():
-    form = RegistrationForm()
+    form = LoginForm()
     return render_template('auth/login.html', form=form)
 
 
