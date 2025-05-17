@@ -14,7 +14,7 @@ def list_users():
     return render_template('user/users.html', users=users)
 
 
-@user.route('/<int:user_id>/edit', methods=['GET', 'POST'])
+@user.route('/<int:user_id>/edit')
 @login_required
 def edit_user(user_id):
     form = UpdateUserForm()
@@ -24,6 +24,32 @@ def edit_user(user_id):
         flash('You are not authorized to your own details.', 'danger')
         return redirect(url_for('user.list_users'))
 
+    return render_template('user/edit.html', user=user, form=form)
+
+
+@user.route('/<int:user_id>/edit', methods=['GET', 'POST'])
+@login_required
+def update_user(user_id):
+    form = UpdateUserForm()
+    user = UserService.get_user_by_id(user_id)
+    
+    if form.validate_on_submit():  
+        data = {
+            'first_name': form.first_name.data,
+            'last_name': form.last_name.data,
+            'email': form.email.data,
+            'address': form.address.data,
+            'zip_code': form.zip_code.data,
+            'gender': form.gender.data
+        }
+        user_updated = UserService.update_user(user_id, data)
+        if user_updated:
+            flash(message='User details updated successfully!', category='success')
+            return redirect(url_for('user.list_users'))
+        else:
+            flash(message='User details updation failed. Please try again.', category='danger')
+            return redirect(url_for('user.list_users'))
+    
     return render_template('user/edit.html', user=user, form=form)
 
 
