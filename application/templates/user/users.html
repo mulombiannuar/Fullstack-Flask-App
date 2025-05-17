@@ -49,7 +49,7 @@ block content %}
                           <i class="fa fa-bars"></i>
                         </a>
                         <a
-                          href="#"
+                          href="{{ url_for('user.edit_user', user_id=user.id) }}"
                           class="btn btn-sm btn-primary"
                           title="Click to edit user details"
                         >

@@ -58,4 +58,31 @@ class RegistrationForm(FlaskForm):
     agree = BooleanField('I agree to the terms', validators=[
         DataRequired(message="You must agree to the terms to register.")
     ])
+    
+    
+class UpdateUserForm(FlaskForm):
+    first_name = StringField('First Name', validators=[
+        DataRequired(message="First name is required."),
+        Length(min=2, max=150, message="First name must be between 2 and 150 characters.")
+    ])
+    last_name = StringField('Last Name', validators=[
+        DataRequired(message="Last name is required."),
+        Length(min=2, max=150, message="Last name must be between 2 and 150 characters.")
+    ])
+    email = StringField('Email', validators=[
+        DataRequired(message="Email address is required."),
+        Email(message="Please enter a valid email address.")
+    ])
+    address = StringField('Address', validators=[
+        DataRequired(message="Address is required."),
+        Length(min=10, max=255, message="Address must be between 10 and 255 characters.")
+    ])
+    zip_code = StringField('Zip Code', validators=[
+        DataRequired(message="Zip code is required."),
+        Length(min=5, max=20, message="Zip code must be between 5 and 20 characters.")
+    ])
+    gender = StringField('Gender', validators=[
+        DataRequired(message="Please select your gender.")
+    ])
+
 
