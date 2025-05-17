@@ -72,12 +72,14 @@ class UserService:
             print(f"Error updating user: {str(e)}")
             return None
 
+
     @staticmethod
     def delete_user(user_id):
         try:
             user = User.query.get(user_id)
             if not user:
                 return False
+            
             db.session.delete(user)
             db.session.commit()
             return True
@@ -87,6 +89,22 @@ class UserService:
             return False
         
     
+    @staticmethod
+    def update_user_password(user_id, new_password):
+        try:
+            user = User.query.get(user_id)
+            if not user:
+                return False
+            
+            user.password = generate_password_hash(new_password)
+            db.session.commit()
+            return True
+        except SQLAlchemyError as e:
+            db.session.rollback()
+            print(f"Error updating user password: {str(e)}")
+            return False
+        
+        
     @staticmethod   
     def generate_reset_token(email):
         serializer = URLSafeTimedSerializer(current_app.config['SECRET_KEY'])

@@ -84,5 +84,19 @@ class UpdateUserForm(FlaskForm):
     gender = StringField('Gender', validators=[
         DataRequired(message="Please select your gender.")
     ])
+    
+
+class PasswordForm(FlaskForm):
+    password = PasswordField('Password', validators=[
+        DataRequired(message="Password is required."),
+        Length(min=8, message="Password must be at least 8 characters long.")
+    ])
+    confirm_password = PasswordField('Confirm Password', validators=[
+        DataRequired(message="Please confirm your password."),
+        EqualTo('password', message="Passwords must match.")
+    ])
+    old_password = PasswordField('Old Password', validators=[
+        DataRequired(message="Old Password is required.")
+    ])
 
 

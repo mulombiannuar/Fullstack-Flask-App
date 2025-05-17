@@ -1,10 +1,10 @@
-{% extends "layouts/base.html" %} {% block title %}Manage Users{% endblock %} {%
-block content %}
+{% extends "layouts/base.html" %} {% block title %}Update Profile{% endblock %}
+{% block content %}
 <div class="content">
   <div class="container">
     <div class="row">
       <div class="col-md-12 page-header">
-        <h2 class="page-title">Edit Users</h2>
+        <h2 class="page-title">Edit Profile</h2>
       </div>
     </div>
     <div class="row">
@@ -12,11 +12,11 @@ block content %}
         <div class="col-md-12 col-lg-12">
           <div class="card">
             <div class="card-header">
-              {{ user.first_name }} {{ user.last_name }}
+              {{ current_user.first_name }} {{ current_user.last_name }}
             </div>
             <div class="card-body">
               <form
-                action="{{ url_for('user.update_user') }}"
+                action="{{ url_for('home.update_profile') }}"
                 method="post"
                 autocomplete="off"
               >
@@ -29,7 +29,7 @@ block content %}
                     <input
                       type="text"
                       name="first_name"
-                      value="{{ user.first_name }}"
+                      value="{{ current_user.first_name }}"
                       class="form-control {% if form.first_name.errors %}is-invalid{% endif %}"
                       placeholder="Enter your first name"
                       required
@@ -45,7 +45,7 @@ block content %}
                     <input
                       type="text"
                       name="last_name"
-                      value="{{ user.last_name }}"
+                      value="{{ current_user.last_name }}"
                       class="form-control {% if form.last_name.errors %}is-invalid{% endif %}"
                       placeholder="Enter your last name"
                       required
@@ -60,7 +60,7 @@ block content %}
                     <input
                       type="email"
                       name="email"
-                      value="{{ user.email }}"
+                      value="{{ current_user.email }}"
                       class="form-control {% if form.email.errors %}is-invalid{% endif %}"
                       placeholder="Enter your email"
                       required
@@ -75,7 +75,7 @@ block content %}
                     <input
                       type="text"
                       name="address"
-                      value="{{ user.address }}"
+                      value="{{ current_user.address }}"
                       class="form-control {% if form.address.errors %}is-invalid{% endif %}"
                       placeholder="Enter your address"
                     />
@@ -91,8 +91,8 @@ block content %}
                       class="form-select {% if form.gender.errors %}is-invalid{% endif %}"
                       required
                     >
-                      <option value="{{ user.gender }}" selected>
-                        {{ user.gender }}
+                      <option value="{{ current_user.gender }}" selected>
+                        {{ current_user.gender }}
                       </option>
                       <option value="male">Male</option>
                       <option value="female">Female</option>
@@ -108,7 +108,7 @@ block content %}
                     <input
                       type="text"
                       name="zip_code"
-                      value="{{ user.zip_code }}"
+                      value="{{ current_user.zip_code }}"
                       class="form-control {% if form.zip_code.errors %}is-invalid{% endif %}"
                       placeholder="Enter your zip code"
                     />
@@ -118,7 +118,7 @@ block content %}
                   </div>
                 </div>
                 <button type="submit" class="btn btn-primary mb-4">
-                  Update User Details
+                  Update Profile
                 </button>
               </form>
             </div>
