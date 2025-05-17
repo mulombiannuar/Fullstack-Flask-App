@@ -33,7 +33,7 @@ def update_user(user_id):
     form = UpdateUserForm()
     user = UserService.get_user_by_id(user_id)
     
-    if form.validate_on_submit():  
+    if request.method == 'POST' and form.validate_on_submit():  
         data = {
             'first_name': form.first_name.data,
             'last_name': form.last_name.data,

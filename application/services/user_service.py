@@ -2,7 +2,7 @@ from application import db, mail
 from application.models.user import User
 from werkzeug.security import generate_password_hash
 from sqlalchemy.exc import SQLAlchemyError
-from flask import current_app, url_for
+from flask import current_app, url_for, render_template
 from itsdangerous import URLSafeTimedSerializer
 from flask_mail import Message
 
@@ -117,6 +117,8 @@ class UserService:
         reset_url = url_for('auth.reset_password_page', token=token, _external=True)
         subject = "Password Reset Request"
         msg = Message(subject, recipients=[email])
+
+        # Fallback plain text version
         msg.body = f"""Hi,
 
         We received a request to reset your password.
@@ -128,6 +130,9 @@ class UserService:
 
         Thanks,
         Your Team
-        
         """
+
+        # HTML version
+        msg.html = render_template('email/reset_password.html', reset_url=reset_url)
+
         mail.send(msg)

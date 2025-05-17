@@ -1,6 +1,7 @@
-from flask import Blueprint, render_template, flash, redirect, url_for
+from flask import Blueprint, render_template, flash, redirect, url_for,request
 from flask_login import login_required, current_user
-from application.forms.user_form import RegistrationForm, UpdateUserForm, PasswordForm
+from application.forms.user_form import UpdateUserForm, PasswordForm
+from application.forms.auth_form import RegistrationForm
 from application.services.user_service import UserService
 from werkzeug.security import check_password_hash
 
@@ -36,7 +37,7 @@ def profile():
 @login_required
 def update_profile():
      form = UpdateUserForm()
-     if form.validate_on_submit():  
+     if request.method == 'POST' and form.validate_on_submit():  
         data = {
             'first_name': form.first_name.data,
             'last_name': form.last_name.data,
@@ -69,7 +70,7 @@ def change_password():
 @login_required
 def update_password():
      form = PasswordForm()
-     if form.validate_on_submit():  
+     if request.method == 'POST' and form.validate_on_submit():  
         
         new_password = form.password.data
         old_password = form.old_password.data
