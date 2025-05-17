@@ -7,6 +7,72 @@ block content %}
         <h2 class="page-title">Manage Users</h2>
       </div>
     </div>
+    <div class="row">
+      <div class="col-md-12 page-header">
+        <div class="col-md-12 col-lg-12">
+          <div class="card">
+            <div class="card-header">Manage Users</div>
+            <div class="card-body">
+              <p class="card-title"></p>
+              <table
+                class="table table-striped table-bordered table-hover"
+                id="dataTables-example"
+                width="100%"
+              >
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Gender</th>
+                    <th>Address</th>
+                    <th>Zip Code</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for user in users %}
+                  <tr>
+                    <td>1</td>
+                    <td>{{ user.first_name }}</td>
+                    <td>{{ user.last_name }}</td>
+                    <td>{{ user.gender }}</td>
+                    <td>{{ user.address }}</td>
+                    <td>{{ user.zip_code }}</td>
+                    <td>
+                      <div class="margin btn-group">
+                        <a
+                          href="#"
+                          class="btn btn-sm btn-info"
+                          title="Click to view user details"
+                        >
+                          <i class="fa fa-bars"></i>
+                        </a>
+                        <a
+                          href="#"
+                          class="btn btn-sm btn-primary"
+                          title="Click to edit user details"
+                        >
+                          <i class="fa fa-edit"></i>
+                        </a>
+                        <a
+                          href="#"
+                          class="btn btn-sm btn-danger"
+                          title="Click to delete user"
+                        >
+                          <i class="fa fa-trash"></i>
+                        </a>
+                      </div>
+                    </td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 {% endblock %}
