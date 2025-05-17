@@ -42,5 +42,10 @@ class PasswordForm(FlaskForm):
     old_password = PasswordField('Old Password', validators=[
         DataRequired(message="Old Password is required.")
     ])
+    
+    
+class DeleteUserForm(FlaskForm):
+    """A form for CSRF-protected delete actions."""
+    pass 
 
 

@@ -2,10 +2,12 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
 from flask_migrate import Migrate 
+from flask_wtf import CSRFProtect
 from application.config import DevelopmentConfig, ProductionConfig
 from dotenv import load_dotenv
 from flask_mail import Mail
 import os
+
 
 # initialize the database object
 db = SQLAlchemy()
@@ -40,6 +42,8 @@ def create_app():
     
     # initialize the mail with app
     mail.init_app(app) 
+    
+    csrf = CSRFProtect(app)
     
     # import and register blueprints for modular structure
     from application.views.home import home

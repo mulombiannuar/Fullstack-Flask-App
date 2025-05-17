@@ -2,7 +2,7 @@ from flask import Blueprint, render_template, request, flash, redirect, url_for
 from application import db   #means from __init__.py import db
 from flask_login import login_required, logout_user, current_user
 from application.models.user import User
-from application.forms.user_form import UpdateUserForm
+from application.forms.user_form import UpdateUserForm, DeleteUserForm
 from application.services.user_service import UserService
 
 user = Blueprint('user', __name__)
@@ -10,8 +10,16 @@ user = Blueprint('user', __name__)
 @user.route('/')
 @login_required
 def list_users():
+    form = DeleteUserForm()
     users = User.query.order_by(User.created_at.desc()).all()
-    return render_template('user/users.html', users=users)
+    return render_template('user/users.html', users=users, form=form)
+
+
+@user.route('/<int:user_id>')
+@login_required
+def show_user(user_id):
+    user = UserService.get_user_by_id(user_id)
+    return render_template('user/show.html', user=user)
 
 
 @user.route('/<int:user_id>/edit')
@@ -19,11 +27,7 @@ def list_users():
 def edit_user(user_id):
     form = UpdateUserForm()
     user = UserService.get_user_by_id(user_id)
-
-    if user.id == current_user.id:
-        flash('You are not authorized to your own details.', 'danger')
-        return redirect(url_for('user.list_users'))
-
+    
     return render_template('user/edit.html', user=user, form=form)
 
 
@@ -52,5 +56,23 @@ def update_user(user_id):
     
     return render_template('user/edit.html', user=user, form=form)
 
+
+
+@user.route('/<int:user_id>/delete', methods=['POST'])
+@login_required
+def delete_user(user_id):
+    user = UserService.get_user_by_id(user_id)
+
+    if user.id == current_user.id:
+        flash('You are not authorized to delete your own details.', 'danger')
+        return redirect(url_for('user.list_users'))
+
+    user_deleted = UserService.delete_user(user_id)
+    if user_deleted:
+        flash('User deleted successfully!', 'success')
+        return redirect(url_for('user.list_users'))
+    else:
+        flash('There was a problem while deleting user. Please try again!', 'danger')
+        return redirect(url_for('user.list_users'))
 
 
