@@ -20,3 +20,26 @@ def dashboard_page():
 @login_required
 def messages_page():
     return render_template('home/messages.html')
+
+@home.route('/profile')
+@login_required
+def profile():
+    return render_template('user/users.html', user=current_user)
+
+
+@home.route('/profile', methods=['GET', 'POST'])
+@login_required
+def update_profile():
+    pass
+
+
+@home.route('/password')
+@login_required
+def change_password():
+    pass
+
+
+@home.route('/password', methods=['GET', 'POST'])
+@login_required
+def update_password():
+    pass

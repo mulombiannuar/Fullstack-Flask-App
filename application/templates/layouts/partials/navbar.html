@@ -27,17 +27,21 @@
           <div class="dropdown-menu dropdown-menu-end nav-link-menu">
             <ul class="nav-list">
               <li>
-                <a href="#" class="dropdown-item"
+                <a href="{{ url_for('home.profile') }}" class="dropdown-item"
                   ><i class="fas fa-address-card"></i> Profile</a
                 >
               </li>
               <li>
-                <a href="#" class="dropdown-item"
+                <a
+                  href="{{ url_for('home.messages_page') }}"
+                  class="dropdown-item"
                   ><i class="fas fa-envelope"></i> Messages</a
                 >
               </li>
               <li>
-                <a href="#" class="dropdown-item"
+                <a
+                  href="{{ url_for('home.change_password') }}"
+                  class="dropdown-item"
                   ><i class="fas fa-cog"></i> Change Password</a
                 >
               </li>

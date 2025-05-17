@@ -12,14 +12,7 @@ def list_users():
     return render_template('user/users.html', users=users)
 
 
-@user.route('/profile')
-@login_required
-def profile():
-    return render_template('user/users.html', user=current_user)
 
 
-@user.route('/profile', methods=['GET', 'POST'])
-@login_required
-def update_profile():
-    pass
+
 
