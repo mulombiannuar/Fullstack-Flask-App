@@ -22,7 +22,7 @@ def list_posts():
 @login_required
 def create_post():
     form = PostForm()
-    return render_template('post/create_post.html', form=form)
+    return render_template('post/create.html', form=form)
 
 
 

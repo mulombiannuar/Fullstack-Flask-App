@@ -13,6 +13,7 @@
       <input
         type="text"
         name="first_name"
+        value="{{ request.form.get('first_name', '') }}"
         class="form-control {% if form.first_name.errors %}is-invalid{% endif %}"
         placeholder="Enter your first name"
         required
@@ -28,6 +29,7 @@
       <input
         type="text"
         name="last_name"
+        value="{{ request.form.get('last_name', '') }}"
         class="form-control {% if form.last_name.errors %}is-invalid{% endif %}"
         placeholder="Enter your last name"
         required
@@ -42,6 +44,7 @@
       <input
         type="email"
         name="email"
+        value="{{ request.form.get('email', '') }}"
         class="form-control {% if form.email.errors %}is-invalid{% endif %}"
         placeholder="Enter your email"
         required
@@ -56,6 +59,7 @@
       <input
         type="text"
         name="address"
+        value="{{ request.form.get('address', '') }}"
         class="form-control {% if form.address.errors %}is-invalid{% endif %}"
         placeholder="Enter your address"
       />
@@ -86,6 +90,7 @@
       <input
         type="text"
         name="zip_code"
+        value="{{ request.form.get('zip_code', '') }}"
         class="form-control {% if form.zip_code.errors %}is-invalid{% endif %}"
         placeholder="Enter your zip code"
       />

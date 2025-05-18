@@ -1,0 +1,86 @@
+{% extends "layouts/base.html" %} {% block title %}Create Post{% endblock %} {%
+block content %}
+<div class="content">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 page-header">
+        <h2 class="page-title">Create New Post</h2>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header">New Post</div>
+          <div class="card-body">
+            <form
+              action="{{ url_for('post.save_post') }}"
+              method="POST"
+              enctype="multipart/form-data"
+              autocomplete="off"
+            >
+              {{ form.hidden_tag() }}
+              <div class="row">
+                <!-- Title -->
+                <div class="col-sm-12 mb-3 text-start">
+                  <label for="title" class="form-label">Title</label>
+                  <input
+                    type="text"
+                    name="title"
+                    class="form-control {% if form.title.errors %}is-invalid{% endif %}"
+                    placeholder="Enter post title"
+                    value="{{ request.form.title or '' }}"
+                    required
+                  />
+                  {% for error in form.title.errors %}
+                  <div class="invalid-feedback">{{ error }}</div>
+                  {% endfor %}
+                </div>
+
+                <!-- Content -->
+                <div class="col-sm-12 mb-3 text-start">
+                  <label for="content" class="form-label">Content</label>
+                  <textarea
+                    name="content"
+                    class="form-control {% if form.content.errors %}is-invalid{% endif %}"
+                    rows="6"
+                    placeholder="Write your post here..."
+                    required
+                  >
+                   {{ request.form.content or '' }}
+                   </textarea
+                  >
+                  {% for error in form.content.errors %}
+                  <div class="invalid-feedback">{{ error }}</div>
+                  {% endfor %}
+                </div>
+
+                <!-- Image -->
+                <div class="col-sm-12 mb-4 text-start">
+                  <label for="post_image" class="form-label">Post Image</label>
+                  <input
+                    type="file"
+                    name="post_image"
+                    class="form-control {% if form.post_image.errors %}is-invalid{% endif %}"
+                    accept="image/*"
+                  />
+                  {% for error in form.post_image.errors %}
+                  <div class="invalid-feedback">{{ error }}</div>
+                  {% endfor %}
+                </div>
+              </div>
+
+              <button type="submit" class="btn btn-success">Create Post</button>
+              <a
+                href="{{ url_for('post.list_posts') }}"
+                class="btn btn-secondary"
+                >Cancel</a
+              >
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
