@@ -11,7 +11,7 @@ user = Blueprint('user', __name__)
 @login_required
 def list_users():
     form = DeleteUserForm()
-    users = User.query.order_by(User.created_at.desc()).all()
+    users = UserService.get_all_users()
     return render_template('user/users.html', users=users, form=form)
 
 

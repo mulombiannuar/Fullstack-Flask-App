@@ -9,6 +9,15 @@ from flask_mail import Message
 class UserService:
     
     @staticmethod
+    def get_all_users():
+        try:
+            return User.query.order_by(User.created_at.desc()).all()
+        except SQLAlchemyError as e:
+            print(f"Error geting users: {str(e)}")
+            return None
+    
+    
+    @staticmethod
     def create_user(data):
         try:
             hashed_password = generate_password_hash(data['password'])
