@@ -38,11 +38,15 @@ def save_post():
             filename = secure_filename(post_image.filename)
             upload_path = os.path.join(current_app.root_path, 'static/uploads', filename)
             post_image.save(upload_path)
+        else:
+            flash(message='Post image could not be uploaded. Please try again!', category='danger')
+            return render_template('post/create.html', form=form)
 
         data = {
             'title': form.title.data,
             'content': form.content.data,
-            'post_image': form.post_image.data
+            'user_id': current_user.id,
+            'post_image': filename
         }
         
         post_created = PostService.create_post(data)
@@ -52,14 +56,27 @@ def save_post():
         else:
             flash(message='Post could not be created!', category='danger')
     
-    return render_template('post/create_post.html', form=form)
+    return render_template('post/create.html', form=form)
 
+
+
+@post.route('/<int:post_id>')
+@login_required
+def show_post(post_id):
+    post = PostService.get_post_by_id(post_id)
+    
+    if not post:
+        flash('Post not found!', 'danger')
+        return redirect(url_for('post.list_posts'))
+
+    return render_template('post/show.html', post=post)
 
 
 
 @post.route('/<int:post_id>/edit')
 @login_required
 def edit_post(post_id):
+    form = PostForm()
     post = PostService.get_post_by_id(post_id)
     
     if not post:
@@ -70,11 +87,11 @@ def edit_post(post_id):
         flash('You are not authorized to edit this post.', 'error')
         return redirect(url_for('post.list_posts'))
 
-    return render_template('post/edit_post.html', post=post)
+    return render_template('post/edit.html', post=post, form=form)
 
 
 
-@post.route('/<int:post_id>/edit')
+@post.route('/<int:post_id>/edit', methods=['POST'])
 @login_required
 def update_post(post_id):
     form = PostForm()

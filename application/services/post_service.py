@@ -47,6 +47,7 @@ class PostService:
                 title=data['title'],
                 content=data['content'],
                 post_image=data['post_image'],
+                user_id=data['user_id'],
                 slug=PostService.generate_post_slug(data['title'])
             )
             db.session.add(post)

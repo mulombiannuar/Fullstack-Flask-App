@@ -16,7 +16,7 @@ block content %}
             </div>
             <div class="card-body">
               <form
-                action="{{ url_for('user.update_user') }}"
+                action="{{ url_for('user.update_user', user_id=user.id) }}"
                 method="post"
                 autocomplete="off"
               >

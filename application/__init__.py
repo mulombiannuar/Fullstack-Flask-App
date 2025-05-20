@@ -8,7 +8,6 @@ from dotenv import load_dotenv
 from flask_mail import Mail
 import os
 
-
 # initialize the database object
 db = SQLAlchemy()
 

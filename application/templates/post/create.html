@@ -47,8 +47,7 @@ block content %}
                     placeholder="Write your post here..."
                     required
                   >
-                   {{ request.form.content or '' }}
-                   </textarea
+{{ request.form.content or '' }}</textarea
                   >
                   {% for error in form.content.errors %}
                   <div class="invalid-feedback">{{ error }}</div>

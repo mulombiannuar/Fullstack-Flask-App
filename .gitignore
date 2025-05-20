@@ -17,3 +17,4 @@ test_*.xml
 .idea/
 .DS_Store
 Thumbs.db
+application/static/uploads
