@@ -4,6 +4,7 @@ from application.forms.user_form import UpdateUserForm, PasswordForm
 from application.forms.auth_form import RegistrationForm
 from application.services.user_service import UserService
 from werkzeug.security import check_password_hash
+from application.services.post_service import PostService
 
 home = Blueprint('home', __name__)
 
@@ -17,7 +18,12 @@ def home_page():
 @home.route('/dashboard', methods=['GET'])
 @login_required
 def dashboard_page():
-    return render_template('home/dashboard.html')
+    dash_stats = {
+        'total_posts': len(PostService.get_all_posts()),
+        'total_users': len(UserService.get_all_users()),
+        'total_messages': 0,
+    }
+    return render_template('home/dashboard.html', dash_stats=dash_stats)
 
 
 @home.route('/messages', methods=['GET'])
